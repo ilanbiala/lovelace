@@ -4,11 +4,11 @@ var http = require('http'),
   redis = require('redis'),
   nlp = require('natural'),
   shortid = require('shortid'),
-  app = express();
-
-var server = require('http').createServer(app);
+  chat = require('./chat');
+  
+var app = express();
+var server = http.createServer(app);
 var io = io(server);
-var client = redis.createClient();
 
 client.on("error", function(err) {
   Console.log("Error: ", err);
@@ -21,9 +21,10 @@ io.on('connection', function(socket) {
 
   var roomID = shortid.generate();
   socket.join(roomID);
-  client.lpush('sessions', roomID);
 });
 
-io.
-
+app.route('/chat')
+  .get(chat.createRoom)
+  .post(chat.sendMessage);
+  
 server.listen(3000);
