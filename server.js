@@ -22,9 +22,5 @@ io.on('connection', function(socket) {
   var roomID = shortid.generate();
   socket.join(roomID);
 });
-
-app.route('/chat')
-  .get(chat.createRoom)
-  .post(chat.sendMessage);
   
 server.listen(3000);
