@@ -1,26 +1,29 @@
-var http = require('http'),
-  express = require('express'),
-  io = require('socket.io'),
-  redis = require('redis'),
-  nlp = require('natural'),
-  shortid = require('shortid'),
-  chat = require('./chat');
-  
-var app = express();
-var server = http.createServer(app);
-var io = io(server);
+/**
+ * Module dependencies.
+ */
+var chalk = require('chalk'),
+	config = require('./config/config'),
+	express = require('./config/express');
 
-client.on("error", function(err) {
-  Console.log("Error: ", err);
-});
+exports.start = function() {
+	var app = express();
 
-io.on('connection', function(socket) {
-  socket.on('message', function(message) {
+	// Logging the initialization details
+	console.log(chalk.green('%s application started.'), config.app.title);
+	console.log(chalk.green('Environment: %s'), process.env.NODE_ENV);
+	console.log(chalk.green('Port: %d'), config.port);
+	console.log(chalk.green('Database: %s'), config.db);
 
-  });
+	// Start the app by listening on <port>
+	exports.server = app.listen(config.port);
+};
 
-  var roomID = shortid.generate();
-  socket.join(roomID);
-});
-  
-server.listen(3000);
+exports.kill = function() {
+	exports.server.close();
+
+	console.log(chalk.red('Application killed. Port %s now available.'), config.port);
+
+	exports.server = null;
+};
+
+exports.start();
