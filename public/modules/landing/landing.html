@@ -1,0 +1,17 @@
+<div>
+  <md-subheader>Lovelace playground</md-subheader>
+  <md-list>
+    <md-item ng-repeat="message in chatHistory">
+      <md-item-content>
+        <div class="md-tile-left">
+          <img ng-src="{{message.user.picture}}" class="face">
+        </div>
+        <div class="md-tile-content">
+          <h3>{{message.user.name}}</h3>
+          <h4>{{message.timestamp}}</h4>
+          <p>{{message.message}}</p>
+        </div>
+      </md-item-content>
+    </md-item>
+  </md-list>
+</div>
