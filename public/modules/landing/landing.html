@@ -14,4 +14,11 @@
       </md-item-content>
     </md-item>
   </md-list>
+  <br>
+  <md-input-container>
+    <label>Biography</label>
+    <textarea ng-model="message" columns="1" md-maxlength="150"></textarea>
+  </md-input-container>
+  <br>
+  <md-button ng-click="sendMessage()">Submit!</md-button>
 </div>
