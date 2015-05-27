@@ -6,6 +6,6 @@ angular.module('lovelace', [
 
 	$mdThemingProvider
 		.theme('default')
-		.primaryColor('blue')
-		.accentColor('green');
+		.primaryPalette('blue')
+		.accentPalette('green');
 }]);

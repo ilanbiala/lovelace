@@ -37,7 +37,6 @@ angular
 							$scope.pictures = data.body.output[0].actions.show.images;
 						} else {
 							$scope.mainIdea = 'text';
-							console.log($scope.mainIdea);
 
 							var hasCitation = $scope.answer.indexOf(' (Answers.com)');
 							if (hasCitation !== -1) {

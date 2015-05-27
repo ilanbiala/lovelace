@@ -340,8 +340,8 @@ angular.module('lovelace', [
 
 	$mdThemingProvider
 		.theme('default')
-		.primaryColor('blue')
-		.accentColor('green');
+		.primaryPalette('blue')
+		.accentPalette('green');
 }]);
 
 angular.module('lovelace')
@@ -397,7 +397,6 @@ angular
 							$scope.pictures = data.body.output[0].actions.show.images;
 						} else {
 							$scope.mainIdea = 'text';
-							console.log($scope.mainIdea);
 
 							var hasCitation = $scope.answer.indexOf(' (Answers.com)');
 							if (hasCitation !== -1) {
@@ -412,6 +411,14 @@ angular
 					$scope.mainIdea = 'text';
 					$scope.answer = 'An error occurred, please try again or refresh the page.';
 				});
+		};
+	}]);
+
+angular
+	.module('lovelace')
+	.filter('mailto', [function() {
+		return function(string) {
+			return encodeURIComponent(string);
 		};
 	}]);
 
