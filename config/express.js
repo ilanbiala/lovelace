@@ -4,9 +4,6 @@
 var http = require('http'),
 	path = require('path'),
 	express = require('express'),
-	socketIO = require('socket.io'),
-	nlp = require('natural'),
-	shortid = require('shortid'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser'),
 	compress = require('compression'),
@@ -16,30 +13,12 @@ var http = require('http'),
 module.exports = function() {
 	// Initialize express app
 	var app = express();
-	var server = http.createServer(app);
-	var io = socketIO(server);
-
-
-	io.on('connection', function(socket) {
-		socket.on('message', function(message) {
-			console.log(message);
-		});
-
-		var roomID = shortid.generate();
-		socket.join(roomID);
-	});
 
 	// Setting application local variables
 	app.locals.env = process.env.NODE_ENV;
 	app.locals.title = config.app.title;
 	app.locals.description = config.app.description;
 	app.locals.keywords = config.app.keywords;
-
-	// Passing the request url to environment locals
-	app.use(function(req, res, next) {
-		res.locals.url = req.protocol + '://' + req.headers.host + req.url;
-		next();
-	});
 
 	// Should be placed before express.static
 	app.use(compress({

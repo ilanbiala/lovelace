@@ -1,0 +1,52 @@
+<md-content class="md-padding" layout="column">
+  <form layout="column" flex>
+    <div layout="row" flex>
+      <md-input-container flex="30" offset="35">
+        <label>What's your question, sir?</label>
+        <textarea ng-model="query" md-maxlength="150"></textarea>
+      </md-input-container>
+    </div>
+    <div layout="row" layout-align="center center" flex>
+      <md-button class="md-raised" ng-click="submit()">Ask away!</md-button>
+    </div>
+    <div>
+      <p>Sample questions:</p>
+      <ul>
+        <li>What is the weather in Marlboro NJ?</li>
+        <li>How old is Barack Obama?</li>
+        <li>Capital of Brazil</li>
+        <li>Recent news</li>
+        <li>Translate I love you into Spanish</li>
+        <li>Show me pictures of the sunset</li>
+      </ul>
+    </div>
+  </form>
+  <div layout="column" flex ng-show="answer">
+    <div ng-switch="mainIdea">
+      <div ng-switch-when="weather">
+        <p>{{answer}}</p>
+        <img ng-src="{{image}}">
+        <p><a ng-href="{{source}}">Source</a></p>
+      </div>
+      <div ng-switch-when="text">
+        <p>{{answer}}</p>
+        <p><a ng-href="{{source}}">Source</a></p>
+      </div>
+      <div ng-switch-when="news">
+        <ul>
+          <li ng-repeat="title in news.titles"><a ng-href="{{news.urls[$index]}}">{{title}}</a></li>
+        </ul>
+      </div>
+      <div ng-switch-when="translate">
+        <p>{{answer}}</p>
+      </div>
+      <div ng-switch-when="image">
+        <p>{{answer}}</p>
+        <md-grid-list md-cols="5" md-gutter="1em" md-row-height="200px">
+          <md-grid-tile ng-repeat="picture in pictures">
+            <img ng-src="{{picture}}" height="200px"></md-grid-tile>
+        </md-grid-list>
+      </div>
+    </div>
+  </div>
+</md-content>

@@ -1,18 +1,12 @@
 doctype html
-<!-- , ng-strict-di='ng-strict-di' -->
-html(lang='en', ng-app='hthsLunch')
+html(lang='en', ng-app='lovelace')
   head
     meta(charset='utf-8')
-    meta(name='google-site-verification', content='OusVZdForAp_xPULUMexre_HupjbVVHTD4KLP5CtO5M')
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no')
     title #{title}
-    link(rel='stylesheet', href='/lib/foundation/css/foundation.css')
     link(rel='stylesheet', href='/lib/angular-material/angular-material.min.css')
     link(rel='stylesheet', href='/styles/global.css')
-    if env == 'production'
-      script(src='/app.min.js')
-    else
-      script(src='/app.js')
+    script(src='/app.js')
     body
       base(href='/')
-      div.content(ui-view='main')                    
+      div(ui-view)                    
