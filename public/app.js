@@ -335,8 +335,13 @@ k+"(\\W|$)","g"),function(b,a){return e+a})):c=c.replace(new RegExp("(/?):"+k+"(
 angular.module('lovelace', [
 	'ngMaterial',
 	'ui.router',
-]).config(['$locationProvider', function($locationProvider) {
+]).config(['$locationProvider', '$mdThemingProvider', function($locationProvider, $mdThemingProvider) {
 	$locationProvider.html5Mode(true).hashPrefix('!');
+
+	$mdThemingProvider
+		.theme('default')
+		.primaryColor('blue')
+		.accentColor('green');
 }]);
 
 angular.module('lovelace')
